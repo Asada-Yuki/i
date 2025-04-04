@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta property="og:locale" content="en-US,zh_CN,ja,fr">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Asada Yuki Suraimu slime">
+  <meta name="keywords" content="Yuki,Suraimu,slime,史莱姆,blog,Twitter,朝田,朝田由纪,blog，スライム，史萊姆，Rimuru Tempest，リムル＝テンペスト，だいけんじゃ，大賢者，大贤者，魔王誕生，魔王诞生">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Asada Yuki Slime">
+  <meta name="copyright" content="Asada Yuki Slime">
+  <meta name="org" content="Twitter">
+  <meta property="article:tag" content="Twitter">
+  <meta property="article:tag" content="X">
+  <meta property="article:tag" content="Suraimu">
+  <meta property="article:tag" content="slime">
+  <meta property="article:tag" content="Asada Yuki">
+  <meta property="article:tag" content="Rimuru Tempest">
+  <meta property="article:tag" content="朝田由纪">
+  <meta property="article:tag" content="史莱姆">
+  <meta property="og:site_name" content="Asada Yuki slime's house">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Asada Yuki slime's house">
+  <meta property="og:description" content="Hello everyone, my name is Asada-Yuki.I hope to receive love. Nice to meet you all~">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@Asada_Yuki_Maso">
+  <meta name="twitter:creator" content="@Asada_Yuki_Maso">
+  <meta name="twitter:title" content="Asada Yuki slime's house">
+  <meta name="twitter:description" content="Hello everyone, my name is Asada-Yuki.I hope to receive love. Nice to meet you all~">
+  <link rel="canonical" href="https://i.yuki.art/">
+  <title>Asada-Yuki Genderless Blue Slime</title>
+  <!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #dddddd;
+      --card-bg: rgba(255, 255, 255, 0.06);
+      --link-hover: #89b4fa;
+      --glow: rgba(255, 255, 255, 0.12);
+      --border-grad: linear-gradient(135deg, #89b4fa, #f38ba8);
+      --particle-color: rgba(255, 255, 255, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 400px;
+      padding: 32px 24px;
+      border-radius: 20px;
+      background: var(--card-bg);
+      box-shadow: 0 0 40px var(--glow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      opacity: 0; /* 初始透明 */
+      transform: scale(0.9); /* 初始缩小 */
+      animation: fadeInScale 1s ease forwards 1.5s; /* 启动动画，延迟 1.5 秒 */
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .profile {
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    .profile h1 {
+      font-size: 24px;
+      margin: 16px 0 6px;
+    }
+
+    .profile p {
+      font-size: 14px;
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .link-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 1;
+      position: relative;
+    }
+
+    .link-list li {
+      margin: 14px 0;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .link-list li::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--border-grad);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+
+    .link-list li:hover::before {
+      opacity: 0.2;
+    }
+
+    .link-list li:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .link-list li a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 16px;
+      z-index: 1;
+      position: relative;
+      width: 100%;
+    }
+
+    .link-list li:hover a {
+      color: var(--link-hover);
+    }
+
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      font-size: 13px;
+      color: gray;
+      z-index: 1;
+      position: relative;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1), var(--bg));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 1;
+      animation: fadeOut 1.5s ease 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay"></div>
+  <div class="container" id="main-container">
+    <div class="profile">
+      <h1>Asada-Yuki<br>Genderless Blue Slime</h1>
+      <p>INFP-T｜Species: Slime｜Gender: Slime｜Sexual Orientation:ゆり</p>
+    </div>
+    <ul class="link-list" id="link-list">
+      <!-- JSON 链接动态加载 -->
+    </ul>
+    <div class="footer">
+      <p>© 2025-<a href="https://www.youtube.com/watch?v=MLfMrBfqCu8" target="_blank" style="color: inherit; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Again</a> Asada-Yuki Genderless Blue Slime. All rights reserved.</p>
+    </div>
+  </div>
+  <canvas id="bg-canvas"></canvas>
+  <script>
+    const links = [
+      { label: "Socloud.me / VPN Affiliate", url: "https://getgoso.net?path=/auth/register&code=aH5O" },
+      { label: "BandwagonHost / VPS Affiliate", url: "https://bandwagonhost.com/aff.php?aff=77596" },
+      { label: "HostDare / VPS Affiliate", url: "https://bill.hostdare.com/aff.php?aff=4108" },
+      { label: "My Personal Website / Website", url: "https://www.yuki.art" },
+      { label: "Twtter/ X", url: "https://x.com/Asada_Yuki_Maso" },
+      { label: "OpenGPG / Contact Information", url: "https://keys.openpgp.org/search?q=CDCC62891336584E05D1468C07CAB9E8E2A228AB" }
+    ];
+
+    const listContainer = document.getElementById("link-list");
+    links.forEach(link => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${link.url}" target="_blank">${link.label}</a>`;
+      listContainer.appendChild(li);
+    });
+
+    // 粒子背景效果
+    const canvas = document.getElementById("bg-canvas");
+    const ctx = canvas.getContext("2d");
+    const particles = [];
+    const maxParticles = 100;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+      for (let i = 0; i < maxParticles; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 2,
+          color: getComputedStyle(document.body).getPropertyValue("--particle-color"),
+          speedX: Math.random() * 0.5 - 0.25,
+          speedY: Math.random() * 0.5 - 0.25
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    createParticles();
+    drawParticles();
+  </script>
+</body>
+</html>
