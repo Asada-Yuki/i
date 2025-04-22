@@ -229,6 +229,19 @@
   </div>
   <canvas id="bg-canvas"></canvas>
   <script>
+     // 先检查并请求持久存储（如果需要）
+    if (navigator.storage && navigator.storage.persist) {
+      navigator.storage.persist().then(persistent => {
+        if (persistent) {
+          console.log('Storage is now persistent.');
+        } else {
+          console.log('Storage will not be persistent. User may need to grant permission.');
+        }
+      }).catch(error => {
+        console.error('Persistent storage request failed:', error);
+      });
+    }
+
     const links = [
       { label: "Socloud.me / VPN Affiliate", url: "https://getgoso.net?path=/auth/register&code=aH5O" },
       { label: "BandwagonHost / VPS Affiliate", url: "https://bandwagonhost.com/aff.php?aff=77596" },
