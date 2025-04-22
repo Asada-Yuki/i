@@ -271,27 +271,27 @@
     }
 
     function drawParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(particle => {
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.fill();
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
-        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
-      });
-      // 不要直接调用 requestAnimationFrame；改为使用 requestIdleCallback
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(() => {
-            animationId = requestAnimationFrame(drawParticles);  // 只在空闲时继续动画
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(particle => {
+    ctx.beginPath();
+    ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+    ctx.fillStyle = particle.color;
+    ctx.fill();
+    particle.x += particle.speedX;
+    particle.y += particle.speedY;
+    if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+    if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+  });
+  
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      animationId = requestAnimationFrame(drawParticles);  // 只在空闲时继续动画
     });
   } else {
     // 如果不支持 requestIdleCallback，使用节流：每 33ms (约 30fps) 运行一次
-          setTimeout(() => {
-           animationId = requestAnimationFrame(drawParticles);
-     }, 33);  // 限制帧率
+    setTimeout(() => {
+      animationId = requestAnimationFrame(drawParticles);
+    }, 33);  // 限制帧率
   }
 }
 
@@ -302,7 +302,8 @@ if (window.innerWidth > 768) {  // 例如，只在宽度大于 768px 时运行
   drawParticles();  // 启动动画
 }
 
-    window.addEventListener("resize", resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
+
   </script>
 </body>
 </html>
