@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <meta property="og:locale" content="en-US">
+  <meta property="og:locale" content="en-US,zh_CN,ja,fr">
   <meta name="applicable-device" content="pc,mobile">
   <meta name="description" content="Asada Yuki Suraimu slime">
   <meta name="keywords" content="Yuki,Suraimu,slime,史莱姆,blog,Twitter,朝田,朝田由纪,blog，スライム，史萊姆，Rimuru Tempest，リムル＝テンペスト，だいけんじゃ，大賢者，大贤者，魔王誕生，魔王诞生">
@@ -229,19 +229,6 @@
   </div>
   <canvas id="bg-canvas"></canvas>
   <script>
-     // 先检查并请求持久存储（如果需要）
-    if (navigator.storage && navigator.storage.persist) {
-      navigator.storage.persist().then(persistent => {
-        if (persistent) {
-          console.log('Storage is now persistent.');
-        } else {
-          console.log('Storage will not be persistent. User may need to grant permission.');
-        }
-      }).catch(error => {
-        console.error('Persistent storage request failed:', error);
-      });
-    }
-
     const links = [
       { label: "Socloud.me / VPN Affiliate", url: "https://getgoso.net?path=/auth/register&code=aH5O" },
       { label: "BandwagonHost / VPS Affiliate", url: "https://bandwagonhost.com/aff.php?aff=77596" },
@@ -262,8 +249,7 @@
     const canvas = document.getElementById("bg-canvas");
     const ctx = canvas.getContext("2d");
     const particles = [];
-    const maxParticles = 50;// 减少粒子数量以优化性能
-    let animationId;  // 用于存储动画 ID，便于取消
+    const maxParticles = 100;
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -284,39 +270,24 @@
     }
 
     function drawParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(particle => {
-    ctx.beginPath();
-    ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-    ctx.fillStyle = particle.color;
-    ctx.fill();
-    particle.x += particle.speedX;
-    particle.y += particle.speedY;
-    if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
-    if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
-  });
-  
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-      animationId = requestAnimationFrame(drawParticles);  // 只在空闲时继续动画
-    });
-  } else {
-    // 如果不支持 requestIdleCallback，使用节流：每 33ms (约 30fps) 运行一次
-    setTimeout(() => {
-      animationId = requestAnimationFrame(drawParticles);
-    }, 33);  // 限制帧率
-  }
-}
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
 
-// 只在桌面设备上运行粒子动画
-if (window.innerWidth > 768) {  // 例如，只在宽度大于 768px 时运行
-  resizeCanvas();
-  createParticles();
-  drawParticles();  // 启动动画
-}
-
-window.addEventListener("resize", resizeCanvas);
-
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    createParticles();
+    drawParticles();
   </script>
 </body>
 </html>
